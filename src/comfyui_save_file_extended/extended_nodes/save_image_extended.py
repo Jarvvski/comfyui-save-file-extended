@@ -48,6 +48,7 @@ class SaveImageExtended:
 
     Token refresh (optional)
     ------------------------
+    - Dropbox cloud_api_key JSON: {app_key, app_secret, refresh_token} or {app_key, app_secret, authorization_code} (auto-converts to refresh token and caches it). Also accepts client_id/client_secret aliases.
     - Google Drive cloud_api_key JSON: {client_id, client_secret, refresh_token} (optional access_token).
     - OneDrive cloud_api_key JSON: {client_id, client_secret, refresh_token, tenant='common'|'consumers'|'organizations', redirect_uri?}.
     When provided, a fresh access token is obtained automatically before uploading.
@@ -85,7 +86,7 @@ class SaveImageExtended:
                 ], {"default": "AWS S3", "tooltip": "Select the cloud provider. See Description for exact formats."}),
                 "bucket_link": ("STRING", {"default": "", "placeholder": "Bucket URL / Connection String*", "tooltip": "Destination identifier (varies by provider). Examples: s3://bucket/prefix, gs://bucket, https://account.blob.core.windows.net/container, b2://bucket, drive://folderId, /Dropbox/Path, /OneDrive/Path, ftp://user:pass@host/basepath, or Supabase bucket name. See Description. For UploadThing, leave blank."}),
                 "cloud_folder_path": ("STRING", {"default": "outputs", "placeholder": "Folder path in bucket (e.g. outputs)", "tooltip": "Folder/key prefix under the destination. Created if missing (where applicable)."}),
-                "cloud_api_key": ("STRING", {"default": "", "placeholder": "Auth / API key*", "tooltip": "Credentials. Supports tokens and JSON. Dropbox accepts JSON with {app_key, app_secret, authorization_code} - refresh token is automatically fetched and cached. Drive/OneDrive support refresh_token JSON. For UploadThing, use your secret key (sk_...). See Description."}),
+                "cloud_api_key": ("STRING", {"default": "", "placeholder": "Auth / API key*", "tooltip": "Credentials. Supports tokens and JSON. Dropbox accepts JSON with {app_key, app_secret, refresh_token} or {app_key, app_secret, authorization_code} (auto-fetches and caches refresh token). Drive/OneDrive support refresh_token JSON. For UploadThing, use your secret key (sk_...). See Description."}),
 
                 # Local section
                 "save_to_local": ("BOOLEAN", {"default": False, "socketless": True, "label_on": "Enabled", "label_off": "Disabled", "tooltip": "Write PNGs to the ComfyUI output directory (in addition to cloud when enabled)."}),

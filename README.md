@@ -35,7 +35,7 @@ Both nodes:
 
 -   Batch save/upload with per-file and byte-level progress
 -   Conditional UI (only shows relevant options for Cloud/Local)
--   Token refresh for Drive/OneDrive (accepts JSON with refresh_token)
+-   Token refresh for Dropbox/Drive/OneDrive (accepts JSON with refresh_token)
 -   Provider-specific path handling with auto-folder creation where applicable
 -   Rich help pages rendered in the ComfyUI client
 
@@ -64,6 +64,7 @@ Both nodes:
 -   Azure Blob: Connection string (or account URL with key/SAS)
 -   B2: `KEY_ID:APP_KEY`
 -   Supabase: JSON `{url, key}` or `url|key`
+-   Dropbox: JSON `{app_key, app_secret, authorization_code}` (auto-fetches and caches refresh token) or `{app_key, app_secret, refresh_token}` or legacy access token
 -   Drive/OneDrive: OAuth2 token or JSON with `refresh_token` (+ client id/secret)
 
 ## Develop

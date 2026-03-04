@@ -47,6 +47,7 @@ class SaveWorkflowExtended:
 
     Token refresh (optional)
     ------------------------
+    - Dropbox cloud_api_key JSON: {app_key, app_secret, refresh_token} or {app_key, app_secret, authorization_code} (auto-converts to refresh token and caches it). Also accepts client_id/client_secret aliases.
     - Google Drive cloud_api_key JSON: {client_id, client_secret, refresh_token} (optional access_token).
     - OneDrive cloud_api_key JSON: {client_id, client_secret, refresh_token, tenant='common'|'consumers'|'organizations', redirect_uri?}.
     When provided, a fresh access token is obtained automatically before uploading.

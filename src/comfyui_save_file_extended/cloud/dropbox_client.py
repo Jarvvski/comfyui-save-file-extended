@@ -246,6 +246,16 @@ class Uploader:
             # Ensure we have a fresh short-lived token before performing operations when supported.
             try:
                 dbx.check_and_refresh_access_token()
+                # Update the token cache with the (potentially refreshed) access token
+                # so subsequent calls can skip the manual refresh round-trip.
+                new_access = getattr(dbx, "_oauth2_access_token", None)
+                if new_access and new_access != creds.get("access_token"):
+                    Uploader._write_cached_tokens(
+                        creds["app_key"],
+                        creds["app_secret"],
+                        creds["refresh_token"],
+                        new_access,
+                    )
             except AttributeError:
                 # Older SDKs may not expose this helper; ignore in that case.
                 pass
